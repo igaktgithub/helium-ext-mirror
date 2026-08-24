@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gupdate xmlns="http://www.google.com/update2/response" protocol="2.0">
+  <app appid='adbacgifemdbhdkfppmeilbgppmhaobf'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/adbacgifemdbhdkfppmeilbgppmhaobf_1.7.2.crx' version='1.7.2' />
+  </app>
+  <app appid='cbghhgpcnddeihccjmnadmkaejncjndb'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/cbghhgpcnddeihccjmnadmkaejncjndb_1.15.2.crx' version='1.15.2' />
+  </app>
+  <app appid='dhdgffkkebhmkfjojejmpbldmpobfkfo'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/dhdgffkkebhmkfjojejmpbldmpobfkfo_5.5.0.crx' version='5.5.0' />
+  </app>
+  <app appid='fkagelmloambgokoeokbpihmgpkbgbfm'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/fkagelmloambgokoeokbpihmgpkbgbfm_3.14.8.crx' version='3.14.8' />
+  </app>
+  <app appid='gebbhagfogifgggkldgodflihgfeippi'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/gebbhagfogifgggkldgodflihgfeippi_4.0.4.crx' version='4.0.4' />
+  </app>
+  <app appid='hbkpclpemjeibhioopcebchdmohaieln'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/hbkpclpemjeibhioopcebchdmohaieln_3.6.22.crx' version='3.6.22' />
+  </app>
+  <app appid='hkgfoiooedgoejojocmhlaklaeopbecg'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/hkgfoiooedgoejojocmhlaklaeopbecg_1.14.crx' version='1.14' />
+  </app>
+  <app appid='hpgaehmokjbdfkbgkeifbfogjalkpfgb'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/hpgaehmokjbdfkbgkeifbfogjalkpfgb_9.64.crx' version='9.64' />
+  </app>
+  <app appid='ickfhlplfbipnfahjbeongebnmojbnhm'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/ickfhlplfbipnfahjbeongebnmojbnhm_0.0.5.18.crx' version='0.0.5.18' />
+  </app>
+  <app appid='jgnigeenijnjlahckhfomimnjadmkmah'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/jgnigeenijnjlahckhfomimnjadmkmah_0.0.0.9.crx' version='0.0.0.9' />
+  </app>
+  <app appid='mnjggcdmjocbbbhaepdhchncahnbgone'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/mnjggcdmjocbbbhaepdhchncahnbgone_6.1.6.crx' version='6.1.6' />
+  </app>
+  <app appid='nngceckbapebfimnlniiiahkandclblb'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/nngceckbapebfimnlniiiahkandclblb_2026.8.0.crx' version='2026.8.0' />
+  </app>
+  <app appid='pachckjkecffpdphbpmfolblodfkgbhl'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/pachckjkecffpdphbpmfolblodfkgbhl_3.212.2.crx' version='3.212.2' />
+  </app>
+  <app appid='ponfpcnoihfmfllpaingbgckeeldkhle'>
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/ponfpcnoihfmfllpaingbgckeeldkhle_3.0.19.crx' version='3.0.19' />
+  </app>
+</gupdate>
