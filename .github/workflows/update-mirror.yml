@@ -29,9 +29,7 @@ jobs:
         run: |
           set -e
           mkdir -p new-crx
-          CHANGED=0
 
-          # Lista de extensões: id, nome-de-referência
           declare -A EXT_IDS=(
             [fkagelmloambgokoeokbpihmgpkbgbfm]="RoPro"
             [hkgfoiooedgoejojocmhlaklaeopbecg]="IndieWikiBuddy"
@@ -43,6 +41,7 @@ jobs:
           )
 
           declare -A NEW_VERSIONS
+          CHANGED=0
 
           for id in "${!EXT_IDS[@]}"; do
             name="${EXT_IDS[$id]}"
@@ -58,26 +57,10 @@ jobs:
               continue
             fi
 
-            version=$(python3 -c "
-import struct, zipfile, io, json
-with open('new-crx/${id}.crx', 'rb') as f:
-    data = f.read()
-magic, ver = struct.unpack('<4sI', data[:8])
-if ver == 2:
-    pk_len, sig_len = struct.unpack('<II', data[8:16])
-    start = 16 + pk_len + sig_len
-else:
-    hdr_len, = struct.unpack('<I', data[8:12])
-    start = 12 + hdr_len
-z = zipfile.ZipFile(io.BytesIO(data[start:]))
-m = json.loads(z.read('manifest.json').decode('utf-8-sig'))
-print(m['version'])
-")
-
+            version=$(python3 scripts/get_version.py "new-crx/${id}.crx")
             echo "Versão detectada: $version"
             NEW_VERSIONS[$id]="$version"
 
-            # Compara com a versão atual no update.xml
             current_version=$(grep -A1 "appid='${id}'" update.xml 2>/dev/null | grep -oP "version='\K[^']+" || echo "none")
 
             if [ "$current_version" != "$version" ]; then
@@ -92,7 +75,6 @@ print(m['version'])
 
           echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
 
-          # Salva o mapa de versões pro próximo step
           for id in "${!NEW_VERSIONS[@]}"; do
             echo "${id}=${NEW_VERSIONS[$id]}" >> versions.env
           done
@@ -110,43 +92,7 @@ print(m['version'])
 
       - name: Regenerar update.xml
         if: steps.download.outputs.changed == '1'
-        run: |
-          python3 << 'PYEOF'
-import os, re
-
-repo = os.environ.get('GITHUB_REPOSITORY', 'igaktgithub/helium-ext-mirror')
-tag = os.environ.get('TAG', '')
-
-versions = {}
-with open('versions.env') as f:
-    for line in f:
-        if '=' in line:
-            k, v = line.strip().split('=', 1)
-            versions[k] = v
-
-# Lê o update.xml atual pra manter entradas não alteradas
-existing = {}
-if os.path.exists('update.xml'):
-    with open('update.xml') as f:
-        content = f.read()
-    for m in re.finditer(r"appid='([^']+)'>\s*<updatecheck codebase='([^']+)' version='([^']+)'", content):
-        existing[m.group(1)] = (m.group(2), m.group(3))
-
-for ext_id, version in versions.items():
-    codebase = f"https://github.com/{repo}/releases/download/{tag}/{ext_id}_{version}.crx"
-    existing[ext_id] = (codebase, version)
-
-lines = ['<?xml version="1.0" encoding="UTF-8"?>',
-         '<gupdate xmlns="http://www.google.com/update2/response" protocol="2.0">']
-for ext_id, (codebase, version) in sorted(existing.items()):
-    lines.append(f"  <app appid='{ext_id}'>")
-    lines.append(f"    <updatecheck codebase='{codebase}' version='{version}' />")
-    lines.append('  </app>')
-lines.append('</gupdate>')
-
-with open('update.xml', 'w') as f:
-    f.write('\n'.join(lines))
-PYEOF
+        run: python3 scripts/regen_update_xml.py
 
       - name: Commit do update.xml
         if: steps.download.outputs.changed == '1'
