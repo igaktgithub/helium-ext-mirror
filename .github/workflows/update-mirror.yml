@@ -55,12 +55,14 @@ jobs:
 
             version=$(python3 scripts/get_version.py "new-crx/${id}.crx")
             echo "Versão detectada: $version"
-            NEW_VERSIONS[$id]="$version"
 
             current_version=$(grep -A1 "appid='${id}'" update.xml 2>/dev/null | grep -oP "version='\K[^']+" || echo "none")
             if [ "$current_version" != "$version" ]; then
               echo "Nova versão! ($current_version -> $version)"
               mv "new-crx/${id}.crx" "new-crx/${id}_${version}.crx"
+              # Só entra no mapa (e portanto no update.xml) quem realmente mudou
+              # e teve o .crx enviado pra release nova.
+              NEW_VERSIONS[$id]="$version"
               CHANGED=1
             else
               echo "Sem mudança."
