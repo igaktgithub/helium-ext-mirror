@@ -21,14 +21,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Instalar dependências
-        run: sudo apt-get update && sudo apt-get install -y python3
-
       - name: Baixar versões atuais e detectar mudanças
         id: download
         run: |
           set -e
           mkdir -p new-crx
+          CHANGED=0
 
           declare -A EXT_IDS=(
             [fkagelmloambgokoeokbpihmgpkbgbfm]="RoPro"
@@ -41,12 +39,10 @@ jobs:
           )
 
           declare -A NEW_VERSIONS
-          CHANGED=0
 
           for id in "${!EXT_IDS[@]}"; do
             name="${EXT_IDS[$id]}"
             echo "=== Verificando $name ($id) ==="
-
             curl -s -L -o "new-crx/${id}.crx" \
               "https://clients2.google.com/service/update2/crx?response=redirect&os=linux&arch=x64&os_arch=x86_64&nacl_arch=x86-64&prod=chromiumcrx&prodchannel=unknown&prodversion=140.0.0.0&acceptformat=crx3&x=id%3D${id}%26uc"
 
@@ -62,7 +58,6 @@ jobs:
             NEW_VERSIONS[$id]="$version"
 
             current_version=$(grep -A1 "appid='${id}'" update.xml 2>/dev/null | grep -oP "version='\K[^']+" || echo "none")
-
             if [ "$current_version" != "$version" ]; then
               echo "Nova versão! ($current_version -> $version)"
               mv "new-crx/${id}.crx" "new-crx/${id}_${version}.crx"
