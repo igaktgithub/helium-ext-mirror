@@ -2,8 +2,8 @@ name: Atualizar mirror de extensões
 
 on:
   schedule:
-    # Toda segunda-feira às 09:00 UTC
-    - cron: '0 9 * * 1'
+    # Todo dia às 00:00 (horário de Brasília, UTC-3) = 03:00 UTC
+    - cron: '0 3 * * *'
   workflow_dispatch: {}
 
 permissions:
