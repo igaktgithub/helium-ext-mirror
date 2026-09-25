@@ -10,7 +10,7 @@
     <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/ext-mirror-1/dhdgffkkebhmkfjojejmpbldmpobfkfo_5.5.0.crx' version='5.5.0' />
   </app>
   <app appid='fkagelmloambgokoeokbpihmgpkbgbfm'>
-    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/mirror-update-20260827-001023/fkagelmloambgokoeokbpihmgpkbgbfm_4.0.0.crx' version='4.0.0' />
+    <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/mirror-update-20260925-081937/fkagelmloambgokoeokbpihmgpkbgbfm_4.0.1.crx' version='4.0.1' />
   </app>
   <app appid='gebbhagfogifgggkldgodflihgfeippi'>
     <updatecheck codebase='https://github.com/igaktgithub/helium-ext-mirror/releases/download/mirror-update-20260906-072452/gebbhagfogifgggkldgodflihgfeippi_4.0.5.crx' version='4.0.5' />
